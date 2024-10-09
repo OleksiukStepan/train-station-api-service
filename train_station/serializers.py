@@ -1,5 +1,5 @@
-import math
-
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 from rest_framework import serializers
 
 from train_station.models import (
@@ -12,6 +12,8 @@ from train_station.models import (
     Journey,
     Ticket,
 )
+from user.models import User
+from user.serializers import UserSerializer
 
 
 class StationSerializer(serializers.ModelSerializer):
@@ -45,9 +47,22 @@ class RouteDetailSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    created_at = serializers.SerializerMethodField()
+    user = serializers.SlugRelatedField(
+        slug_field="email",
+        queryset=User.objects.all()
+    )
+
     class Meta:
         model = Order
         fields = ["id", "created_at", "user"]
+
+    def get_created_at(self, obj):
+        return timezone.localtime(obj.created_at).strftime("%Y-%m-%d %H:%M:%S")
+
+
+class OrderDetailSerializer(OrderSerializer):
+    user = UserSerializer(many=False, read_only=True)
 
 
 class TrainTypeSerializer(serializers.ModelSerializer):
