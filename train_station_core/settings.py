@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # 3rd apps
     "rest_framework",
+    "drf_spectacular",
 
     # my apps
     "train_station",
@@ -130,3 +131,19 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "user.User"
+
+REST_FRAMEWORK = {
+    # SPECTACULAR
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Train Station API",
+    "DESCRIPTION": "Train Station API Service, is a RESTful API system "
+        "for managing train stations, routes, journeys, and ticket bookings. "
+        "<br> It allows users to book tickets, view available journeys, "
+        "manage trains, crew members, and stations efficiently.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
