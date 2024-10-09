@@ -1,14 +1,14 @@
 from rest_framework import serializers
 
 from train_station.models import (
-    Crew,
-    Route,
-    Journey,
-    Order,
     Station,
-    Ticket,
-    TrainType,
+    Route,
+    Order,
     Train,
+    TrainType,
+    Crew,
+    Journey,
+    Ticket,
 )
 
 

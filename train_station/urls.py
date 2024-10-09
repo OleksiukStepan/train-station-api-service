@@ -15,14 +15,14 @@ from train_station.views import (
 
 router = routers.DefaultRouter()
 
-router.register("station", StationViewSet)
-router.register("route", RouteViewSet)
+router.register("stations", StationViewSet)
+router.register("routes", RouteViewSet)
 router.register("orders", OrderViewSet)
-router.register("train", TrainViewSet)
-router.register("train-type", TrainTypeViewSet)
-router.register("crew", CrewViewSet)
-router.register("journey", JourneyViewSet)
-router.register("ticket", TicketViewSet)
+router.register("trains", TrainViewSet)
+router.register("train-types", TrainTypeViewSet)
+router.register("crews", CrewViewSet)
+router.register("journeys", JourneyViewSet)
+router.register("tickets", TicketViewSet)
 
 
 
