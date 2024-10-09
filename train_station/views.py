@@ -1,3 +1,65 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from train_station.models import (
+    Station,
+    Route,
+    Order,
+    Train,
+    TrainType,
+    Crew,
+    Journey,
+    Ticket,
+)
+from train_station.serializers import (
+    StationSerializer,
+    RouteSerializer,
+    OrderSerializer,
+    TrainSerializer,
+    TrainTypeSerializer,
+    CrewSerializer,
+    JourneySerializer,
+    TicketSerializer,
+)
+
+
+class StationViewSet(viewsets.ModelViewSet):
+    queryset = Station.objects.all()
+    serializer_class = StationSerializer
+
+
+class RouteViewSet(viewsets.ModelViewSet):
+    queryset = Route.objects.select_related("source", "destination")
+    serializer_class = RouteSerializer
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.select_related("user")
+    serializer_class = OrderSerializer
+
+
+class TrainTypeViewSet(viewsets.ModelViewSet):
+    queryset = TrainType.objects.all()
+    serializer_class = TrainTypeSerializer
+
+
+class TrainViewSet(viewsets.ModelViewSet):
+    queryset = Train.objects.select_related("train_type")
+    serializer_class = TrainSerializer
+
+
+class CrewViewSet(viewsets.ModelViewSet):
+    queryset = Crew.objects.all()
+    serializer_class = CrewSerializer
+
+
+class JourneyViewSet(viewsets.ModelViewSet):
+    queryset = (
+        Journey.objects.select_related("route", "train")
+        .prefetch_related("crew")
+    )
+    serializer_class = JourneySerializer
+
+
+class TicketViewSet(viewsets.ModelViewSet):
+    queryset = Ticket.objects.select_related("journey", "order")
+    serializer_class = TicketSerializer
