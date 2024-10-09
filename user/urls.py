@@ -2,5 +2,7 @@ from django.urls import path
 
 
 urlpatterns = [
-    path(),
+    # path(),
 ]
+
+app_name = "user"
