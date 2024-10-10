@@ -141,6 +141,36 @@ class Ticket(models.Model):
         unique_together = ("journey", "cargo", "seat")
         ordering = ["journey", "cargo", "seat"]
 
+    @staticmethod
+    def validate_ticket(cargo, seat, train, error_to_raise):
+        if not (1 <= cargo <= train.cargo_num):
+            raise error_to_raise(
+                {
+                    "cargo":
+                        f"Cargo number must be in available range: "
+                        f"(1, {train.cargo_num})"
+                }
+            )
+        if not (1 <= seat <= train.places_in_cargo):
+            raise error_to_raise(
+                {
+                    "seat":
+                        f"Seat number must be in available range: "
+                        f"(1, {train.places_in_cargo})"}
+            )
+
+    def clean(self):
+        Ticket.validate_ticket(
+            self.cargo,
+            self.seat,
+            self.journey.train,
+            ValidationError,
+        )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
+
     def __str__(self):
         return (
             f"Route: {str(self.journey.route)} "

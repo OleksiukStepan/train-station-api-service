@@ -1,4 +1,6 @@
+from django.db import transaction
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from train_station.models import (
     Station,
@@ -10,7 +12,6 @@ from train_station.models import (
     Journey,
     Ticket,
 )
-from user.serializers import UserSerializer
 
 
 class StationSerializer(serializers.ModelSerializer):
@@ -71,14 +72,8 @@ class CrewSerializer(serializers.ModelSerializer):
 
 
 class JourneySerializer(serializers.ModelSerializer):
-    departure_time = serializers.DateTimeField(
-        read_only=True,
-        format="%Y-%m-%d %H:%M:%S",
-    )
-    arrival_time = serializers.DateTimeField(
-        read_only=True,
-        format="%Y-%m-%d %H:%M:%S",
-    )
+    departure_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S",)
+    arrival_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S",)
 
     class Meta:
         model = Journey
@@ -105,7 +100,7 @@ class JourneyListSerializer(JourneySerializer):  #
 
     def get_crew(self, obj: Journey) -> list[str]:
         return [
-            f"{person.first_name} {person.last_name}"
+            f"{person.full_name}"
             for person in obj.crew.all()
         ]
 
@@ -121,6 +116,15 @@ class TicketSerializer(serializers.ModelSerializer):
         model = Ticket
         fields = ["id", "cargo", "seat", "journey"]
 
+    def validate(self, attrs):
+        data = super().validate(attrs=attrs)
+        Ticket.validate_ticket(
+            attrs["cargo"],
+            attrs["seat"],
+            attrs["journey"].train,
+            ValidationError
+        )
+        return data
 
 class TicketListSerializer(TicketSerializer):
     journey = JourneyListSerializer(many=False, read_only=True)
