@@ -14,10 +14,7 @@ class Station(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return (
-            f"{self.name} "
-            f"(lat: {self.latitude:.2f}, long: {self.longitude:.2f})"
-        )
+        return self.name
 
 
 class Route(models.Model):
@@ -45,8 +42,7 @@ class Route(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return (f"{self.source.name} - {self.destination.name} "
-                f"({self.distance} km)")
+        return f"{self.source.name} - {self.destination.name}"
 
 
 class Order(models.Model):
@@ -59,7 +55,7 @@ class Order(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return str(self.created_at)
+        return self.created_at.strftime("%Y-%m-%d %H:%M:%S")
 
 
 class TrainType(models.Model):
@@ -80,11 +76,7 @@ class Train(models.Model):
     )
 
     def __str__(self):
-        return (
-            f"Train: {self.name} ({self.train_type.name}) - "
-            f"Cargos: {self.cargo_num}, "
-            f"Places per Cargo: {self.places_in_cargo}"
-        )
+        return self.name
 
 
 class Crew(models.Model):
@@ -126,10 +118,8 @@ class Journey(models.Model):
 
     def __str__(self):
         return (
-            f"{str(self.route)}\n"
-            f"{str(self.train)}\n"
-            f"Departure: {self.departure_time} - "
-            f"Arrival: {self.arrival_time}"
+            f"{self.route.source.name} -> {self.route.destination.name} "
+            f"Train: {self.train.name}"
         )
 
 
@@ -153,9 +143,6 @@ class Ticket(models.Model):
 
     def __str__(self):
         return (
-            f"Route: {str({self.journey.route})} "
-            f"Cargo: {self.cargo}, Seat: {self.seat} \n"
-            f"Departure: {self.journey.departure_time} - "
-            f"Arrival: {self.journey.arrival_time}"
-            f"Order time: {self.order}"
+            f"Route: {str(self.journey.route)} "
+            f"Cargo: {self.cargo}, Seat: {self.seat}"
         )
