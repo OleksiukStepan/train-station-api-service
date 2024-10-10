@@ -62,9 +62,17 @@ class OrderViewSet(viewsets.ModelViewSet):
 
         return OrderSerializer
 
-    # def get_queryset(self):
-    #     return Order.objects.filter(user=self.request.user)   # TODO
+    def get_queryset(self):
+        queryset = self.queryset
 
+        date = self.request.query_params.get("date")
+
+        if date:
+            date = datetime.strptime(date, "%Y-%m-%d").date()
+            queryset = queryset.filter(created_at__date=date)
+
+    #     return Order.objects.filter(user=self.request.user)   # TODO
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
