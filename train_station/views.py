@@ -13,12 +13,15 @@ from train_station.models import (
 from train_station.serializers import (
     StationSerializer,
     RouteSerializer,
+    RouteListSerializer,
+    RouteDetailSerializer,
     OrderSerializer,
+    OrderDetailSerializer,
     TrainSerializer,
     TrainTypeSerializer,
     CrewSerializer,
     JourneySerializer,
-    TicketSerializer, RouteDetailSerializer, OrderDetailSerializer,
+    TicketSerializer,
 )
 
 
@@ -31,7 +34,9 @@ class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
 
     def get_serializer_class(self):
-        if self.action == "retrieve":
+        if self.action == "list":
+            return RouteListSerializer
+        elif self.action == "retrieve":
             return RouteDetailSerializer
 
         return RouteSerializer

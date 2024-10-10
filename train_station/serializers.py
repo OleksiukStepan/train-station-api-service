@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.utils import timezone
 from rest_framework import serializers
 
@@ -23,6 +22,12 @@ class StationSerializer(serializers.ModelSerializer):
 
 
 class RouteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Route
+        fields = ["id", "source", "destination", "distance"]
+
+
+class RouteListSerializer(RouteSerializer):
     source = serializers.SlugRelatedField(
         slug_field="name",
         queryset=Station.objects.all()
@@ -31,10 +36,6 @@ class RouteSerializer(serializers.ModelSerializer):
         slug_field="name",
         queryset=Station.objects.all()
     )
-
-    class Meta:
-        model = Route
-        fields = ["id", "source", "destination", "distance"]
 
 
 class RouteDetailSerializer(serializers.ModelSerializer):
