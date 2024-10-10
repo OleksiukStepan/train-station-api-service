@@ -39,8 +39,34 @@ class StationViewSet(viewsets.ModelViewSet):
     serializer_class = StationSerializer
 
 
+class TrainTypeViewSet(viewsets.ModelViewSet):
+    queryset = TrainType.objects.all()
+    serializer_class = TrainTypeSerializer
+
+
+class CrewViewSet(viewsets.ModelViewSet):
+    queryset = Crew.objects.all()
+    serializer_class = CrewSerializer
+
+
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
+
+    def get_queryset(self):
+        queryset = self.queryset
+
+        source = self.request.query_params.get("source")
+        destination = self.request.query_params.get("destination")
+
+        if source:
+            queryset = queryset.filter(source__name__icontains=source)
+
+        if destination:
+            queryset = queryset.filter(
+                destination__name__icontains=destination
+            )
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -78,13 +104,24 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class TrainTypeViewSet(viewsets.ModelViewSet):
-    queryset = TrainType.objects.all()
-    serializer_class = TrainTypeSerializer
-
-
 class TrainViewSet(viewsets.ModelViewSet):
     queryset = Train.objects.select_related("train_type")
+
+    @staticmethod
+    def _params_to_ints(qs):
+        """Converts a list of string IDs to a list of integers"""
+        return [int(str_id) for str_id in qs.split(",")]
+
+    def get_queryset(self):
+        queryset = self.queryset
+
+        train_type = self.request.query_params.get("type")
+
+        if train_type:
+            train_type_ids = self._params_to_ints(train_type)
+            queryset = queryset.filter(train_type__id__in=train_type_ids)
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -93,11 +130,6 @@ class TrainViewSet(viewsets.ModelViewSet):
             return TrainDetailSerializer
 
         return TrainSerializer
-
-
-class CrewViewSet(viewsets.ModelViewSet):
-    queryset = Crew.objects.all()
-    serializer_class = CrewSerializer
 
 
 class JourneyViewSet(viewsets.ModelViewSet):
