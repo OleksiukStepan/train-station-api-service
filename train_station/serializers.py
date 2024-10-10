@@ -25,6 +25,14 @@ class RouteSerializer(serializers.ModelSerializer):
         model = Route
         fields = ["id", "source", "destination", "distance"]
 
+    def validate(self, attrs):
+        if attrs["source"] == attrs["destination"]:
+            raise serializers.ValidationError(
+                "Source and destination can't be the same"
+            )
+
+        return super().validate(attrs)
+
 
 class RouteListSerializer(RouteSerializer):
     source = serializers.SlugRelatedField(
@@ -85,6 +93,14 @@ class JourneySerializer(serializers.ModelSerializer):
             "departure_time",
             "arrival_time"
         ]
+
+    def validate(self, attrs):
+        if attrs["departure_time"] >= attrs["arrival_time"]:
+            raise serializers.ValidationError(
+                "Departure time cannot be later than or equal to arrival time"
+            )
+
+        return super().validate(attrs)
 
 
 class JourneyListSerializer(JourneySerializer):  #
@@ -151,6 +167,7 @@ class OrderSerializer(serializers.ModelSerializer):
             order = Order.objects.create(**validated_data)
             for ticket_data in tickets_data:
                 Ticket.objects.create(order=order, **ticket_data)
+
             return order
 
 
