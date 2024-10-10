@@ -1,4 +1,3 @@
-from django.utils import timezone
 from rest_framework import serializers
 
 from train_station.models import (
@@ -11,7 +10,6 @@ from train_station.models import (
     Journey,
     Ticket,
 )
-from user.models import User
 from user.serializers import UserSerializer
 
 
@@ -41,28 +39,6 @@ class RouteListSerializer(RouteSerializer):
 class RouteDetailSerializer(RouteSerializer):
     source = StationSerializer(many=False, read_only=True)
     destination = StationSerializer(many=False, read_only=True)
-
-
-class OrderSerializer(serializers.ModelSerializer):
-    created_at = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Order
-        fields = ["id", "created_at", "user"]
-
-    def get_created_at(self, obj):
-        return timezone.localtime(obj.created_at).strftime("%Y-%m-%d %H:%M:%S")
-
-
-class OrderListSerializer(OrderSerializer):
-    user = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field="email",
-    )
-
-
-class OrderDetailSerializer(OrderSerializer):
-    user = UserSerializer(many=False, read_only=True)
 
 
 class TrainTypeSerializer(serializers.ModelSerializer):
@@ -95,8 +71,14 @@ class CrewSerializer(serializers.ModelSerializer):
 
 
 class JourneySerializer(serializers.ModelSerializer):
-    departure_time = serializers.SerializerMethodField()
-    arrival_time = serializers.SerializerMethodField()
+    departure_time = serializers.DateTimeField(
+        read_only=True,
+        format="%Y-%m-%d %H:%M:%S",
+    )
+    arrival_time = serializers.DateTimeField(
+        read_only=True,
+        format="%Y-%m-%d %H:%M:%S",
+    )
 
     class Meta:
         model = Journey
@@ -108,17 +90,6 @@ class JourneySerializer(serializers.ModelSerializer):
             "departure_time",
             "arrival_time"
         ]
-
-    def get_departure_time(self, obj) -> str:
-        return (
-            timezone.localtime(obj.departure_time)
-            .strftime("%Y-%m-%d %H:%M:%S")
-        )
-
-    def get_arrival_time(self, obj) -> str:
-        return (
-            timezone.localtime(obj.arrival_time).strftime("%Y-%m-%d %H:%M:%S")
-        )
 
 
 class JourneyListSerializer(JourneySerializer):  #
@@ -143,11 +114,45 @@ class JourneyDetailSerializer(JourneySerializer):  #
     crew = CrewSerializer(many=True, read_only=True)
     route = RouteListSerializer(many=False, read_only=True)
     train = TrainListSerializer(many=False, read_only=True)
-    departure_time = serializers.SerializerMethodField()
-    arrival_time = serializers.SerializerMethodField()
 
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        fields = ["id", "cargo", "seat", "journey", "order"]
+        fields = ["id", "cargo", "seat", "journey"]
+
+
+class TicketListSerializer(TicketSerializer):
+    journey = JourneyListSerializer(many=False, read_only=True)
+
+
+class TicketDetailSerializer(TicketSerializer):
+    journey = JourneyDetailSerializer(many=False, read_only=True)
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    created_at = serializers.DateTimeField(
+        read_only=True,
+        format="%Y-%m-%d %H:%M:%S",
+    )
+    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
+
+    class Meta:
+        model = Order
+        fields = ["id", "tickets", "created_at"]
+
+    def create(self, validated_data):
+        with transaction.atomic():
+            tickets_data = validated_data.pop("tickets")
+            order = Order.objects.create(**validated_data)
+            for ticket_data in tickets_data:
+                Ticket.objects.create(order=order, **ticket_data)
+            return order
+
+
+class OrderListSerializer(OrderSerializer):
+    tickets = TicketListSerializer(many=True, read_only=True)
+
+
+class OrderDetailSerializer(OrderSerializer):
+    tickets = TicketDetailSerializer(many=True, read_only=True)
