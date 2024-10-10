@@ -44,20 +44,21 @@ class RouteDetailSerializer(RouteSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    created_at = serializers.SerializerMethodField()
+
     class Meta:
         model = Order
         fields = ["id", "created_at", "user"]
 
+    def get_created_at(self, obj):
+        return timezone.localtime(obj.created_at).strftime("%Y-%m-%d %H:%M:%S")
+
 
 class OrderListSerializer(OrderSerializer):
-    created_at = serializers.SerializerMethodField()
     user = serializers.SlugRelatedField(
         read_only=True,
         slug_field="email",
     )
-
-    def get_created_at(self, obj):
-        return timezone.localtime(obj.created_at).strftime("%Y-%m-%d %H:%M:%S")
 
 
 class OrderDetailSerializer(OrderSerializer):
@@ -93,8 +94,9 @@ class CrewSerializer(serializers.ModelSerializer):
         fields = ["id", "first_name", "last_name"]
 
 
-class JourneySerializer(serializers.ModelSerializer):  #
-    crew = CrewSerializer(many=True, read_only=True)
+class JourneySerializer(serializers.ModelSerializer):
+    departure_time = serializers.SerializerMethodField()
+    arrival_time = serializers.SerializerMethodField()
 
     class Meta:
         model = Journey
@@ -106,6 +108,43 @@ class JourneySerializer(serializers.ModelSerializer):  #
             "departure_time",
             "arrival_time"
         ]
+
+    def get_departure_time(self, obj) -> str:
+        return (
+            timezone.localtime(obj.departure_time)
+            .strftime("%Y-%m-%d %H:%M:%S")
+        )
+
+    def get_arrival_time(self, obj) -> str:
+        return (
+            timezone.localtime(obj.arrival_time).strftime("%Y-%m-%d %H:%M:%S")
+        )
+
+
+class JourneyListSerializer(JourneySerializer):  #
+    route = serializers.SerializerMethodField()
+    train = serializers.CharField(
+        source="train.train_type.name",
+        read_only=True
+    )
+    crew = serializers.SerializerMethodField()
+
+    def get_route(self, obj: Journey) -> str:
+        return f"{obj.route.source.name} -> {obj.route.destination.name}"
+
+    def get_crew(self, obj: Journey) -> list[str]:
+        return [
+            f"{person.first_name} {person.last_name}"
+            for person in obj.crew.all()
+        ]
+
+
+class JourneyDetailSerializer(JourneySerializer):  #
+    crew = CrewSerializer(many=True, read_only=True)
+    route = RouteListSerializer(many=False, read_only=True)
+    train = TrainListSerializer(many=False, read_only=True)
+    departure_time = serializers.SerializerMethodField()
+    arrival_time = serializers.SerializerMethodField()
 
 
 class TicketSerializer(serializers.ModelSerializer):

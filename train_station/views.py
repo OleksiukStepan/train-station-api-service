@@ -24,7 +24,7 @@ from train_station.serializers import (
     TrainDetailSerializer,
     CrewSerializer,
     JourneySerializer,
-    TicketSerializer,
+    TicketSerializer, JourneyListSerializer, JourneyDetailSerializer,
 )
 
 
@@ -84,7 +84,14 @@ class JourneyViewSet(viewsets.ModelViewSet):
         Journey.objects.select_related("route", "train")
         .prefetch_related("crew")
     )
-    serializer_class = JourneySerializer
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return JourneyListSerializer
+        elif self.action == "retrieve":
+            return JourneyDetailSerializer
+
+        return JourneySerializer
 
 
 class TicketViewSet(viewsets.ModelViewSet):
