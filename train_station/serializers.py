@@ -29,12 +29,12 @@ class RouteSerializer(serializers.ModelSerializer):
 
 class RouteListSerializer(RouteSerializer):
     source = serializers.SlugRelatedField(
+        read_only=True,
         slug_field="name",
-        queryset=Station.objects.all()
     )
     destination = serializers.SlugRelatedField(
+        read_only=True,
         slug_field="name",
-        queryset=Station.objects.all()
     )
 
 
@@ -52,8 +52,8 @@ class OrderSerializer(serializers.ModelSerializer):
 class OrderListSerializer(OrderSerializer):
     created_at = serializers.SerializerMethodField()
     user = serializers.SlugRelatedField(
+        read_only=True,
         slug_field="email",
-        queryset=User.objects.all()
     )
 
     def get_created_at(self, obj):
@@ -74,6 +74,17 @@ class TrainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Train
         fields = ["id", "name", "cargo_num", "places_in_cargo", "train_type"]
+
+
+class TrainListSerializer(TrainSerializer):
+    train_type = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field="name",
+    )
+
+
+class TrainDetailSerializer(TrainSerializer):
+    train_type = TrainTypeSerializer(many=False, read_only=False)
 
 
 class CrewSerializer(serializers.ModelSerializer):
