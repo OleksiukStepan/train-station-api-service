@@ -38,25 +38,23 @@ class RouteListSerializer(RouteSerializer):
     )
 
 
-class RouteDetailSerializer(serializers.ModelSerializer):
+class RouteDetailSerializer(RouteSerializer):
     source = StationSerializer(many=False, read_only=True)
     destination = StationSerializer(many=False, read_only=True)
 
-    class Meta:
-        model = Route
-        fields = ["id", "source", "destination", "distance"]
-
 
 class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ["id", "created_at", "user"]
+
+
+class OrderListSerializer(OrderSerializer):
     created_at = serializers.SerializerMethodField()
     user = serializers.SlugRelatedField(
         slug_field="email",
         queryset=User.objects.all()
     )
-
-    class Meta:
-        model = Order
-        fields = ["id", "created_at", "user"]
 
     def get_created_at(self, obj):
         return timezone.localtime(obj.created_at).strftime("%Y-%m-%d %H:%M:%S")

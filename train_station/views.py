@@ -21,7 +21,7 @@ from train_station.serializers import (
     TrainTypeSerializer,
     CrewSerializer,
     JourneySerializer,
-    TicketSerializer,
+    TicketSerializer, OrderListSerializer,
 )
 
 
@@ -46,7 +46,9 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related("user")
 
     def get_serializer_class(self):
-        if self.action == "retrieve":
+        if self.action == "list":
+            return OrderListSerializer
+        elif self.action == "retrieve":
             return OrderDetailSerializer
 
         return OrderSerializer
