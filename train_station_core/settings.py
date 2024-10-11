@@ -144,6 +144,9 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend"
     ],
+    # PAGINATION
+    "DEFAULT_PAGINATION_CLASS":
+        "train_station.pagination.TrainStationPagination",
     # SPECTACULAR
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
