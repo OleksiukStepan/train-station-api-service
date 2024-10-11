@@ -4,6 +4,22 @@ import django_filters
 from django.db.models import QuerySet
 
 
+class OrderFilter(django_filters.FilterSet):
+    created_at = django_filters.CharFilter(method="filter_created_at")
+
+    def filter_created_at(
+            self,
+            queryset: QuerySet,
+            name: str,
+            value: str
+    ) -> QuerySet:
+        try:
+            date = datetime.strptime(value, "%Y-%m-%d").date()
+            return queryset.filter(created_at__date=date)
+        except ValueError:
+            return queryset
+
+
 class JourneyFilter(django_filters.FilterSet):
     departure_time = django_filters.CharFilter(method="filter_departure_time")
     arrival_time = django_filters.CharFilter(method="filter_arrival_time")

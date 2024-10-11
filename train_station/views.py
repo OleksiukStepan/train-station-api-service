@@ -3,7 +3,7 @@ from datetime import datetime
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
-from train_station.filters import JourneyFilter
+from train_station.filters import OrderFilter, JourneyFilter
 from train_station.models import (
     Station,
     Route,
@@ -81,6 +81,7 @@ class RouteViewSet(viewsets.ModelViewSet):
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related("user")
+    filterset_class = OrderFilter
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -90,17 +91,9 @@ class OrderViewSet(viewsets.ModelViewSet):
 
         return OrderSerializer
 
-    def get_queryset(self):
-        queryset = self.queryset
-
-        date = self.request.query_params.get("date")
-
-        if date:
-            date = datetime.strptime(date, "%Y-%m-%d").date()
-            queryset = queryset.filter(created_at__date=date)
-
+    # def get_queryset(self):
     #     return Order.objects.filter(user=self.request.user)   # TODO
-        return queryset
+    #     return queryset
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -139,7 +132,6 @@ class JourneyViewSet(viewsets.ModelViewSet):
         Journey.objects.select_related("route", "train")
         .prefetch_related("crew")
     )
-    filter_backends = [DjangoFilterBackend]
     filterset_class = JourneyFilter
 
     def get_queryset(self):
