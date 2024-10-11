@@ -68,6 +68,13 @@ class CrewViewSet(viewsets.ModelViewSet):
     queryset = Crew.objects.all()
     serializer_class = CrewSerializer
 
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=["first_name", "last_name"]
+        )
+        return queryset.order_by(*ordering_fields)
+
 
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
