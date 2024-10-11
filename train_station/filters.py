@@ -20,6 +20,22 @@ class OrderFilter(django_filters.FilterSet):
             return queryset
 
 
+class TrainFilter(django_filters.FilterSet):
+    train_type = django_filters.CharFilter(method="filter_train_type")
+
+    def filter_train_type(
+            self,
+            queryset: QuerySet,
+            name: str,
+            value: str
+    ) -> QuerySet:
+        try:
+            train_type_ids = [int(pk) for pk in value.split(",")]
+            return queryset.filter(train_type__id__in=train_type_ids)
+        except ValueError:
+            return queryset
+
+
 class JourneyFilter(django_filters.FilterSet):
     departure_time = django_filters.CharFilter(method="filter_departure_time")
     arrival_time = django_filters.CharFilter(method="filter_arrival_time")
