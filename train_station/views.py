@@ -1,7 +1,9 @@
 from datetime import datetime
 
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
+from train_station.filters import JourneyFilter
 from train_station.models import (
     Station,
     Route,
@@ -137,6 +139,8 @@ class JourneyViewSet(viewsets.ModelViewSet):
         Journey.objects.select_related("route", "train")
         .prefetch_related("crew")
     )
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = JourneyFilter
 
     def get_queryset(self):
         queryset = self.queryset
