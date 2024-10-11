@@ -4,6 +4,17 @@ import django_filters
 from django.db.models import QuerySet
 
 
+class RouteFilter(django_filters.FilterSet):
+    source = django_filters.CharFilter(
+        field_name="source__name",
+        lookup_expr="icontains"
+    )
+    destination = django_filters.CharFilter(
+        field_name="destination__name",
+        lookup_expr="icontains"
+    )
+
+
 class OrderFilter(django_filters.FilterSet):
     created_at = django_filters.CharFilter(method="filter_created_at")
 

@@ -1,9 +1,11 @@
-from datetime import datetime
-
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
-from train_station.filters import OrderFilter, JourneyFilter, TrainFilter
+from train_station.filters import (
+    RouteFilter,
+    OrderFilter,
+    TrainFilter,
+    JourneyFilter,
+)
 from train_station.models import (
     Station,
     Route,
@@ -53,22 +55,7 @@ class CrewViewSet(viewsets.ModelViewSet):
 
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
-
-    def get_queryset(self):
-        queryset = self.queryset
-
-        source = self.request.query_params.get("source")
-        destination = self.request.query_params.get("destination")
-
-        if source:
-            queryset = queryset.filter(source__name__icontains=source)
-
-        if destination:
-            queryset = queryset.filter(
-                destination__name__icontains=destination
-            )
-
-        return queryset
+    filterset_class = RouteFilter
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -118,33 +105,6 @@ class JourneyViewSet(viewsets.ModelViewSet):
         .prefetch_related("crew")
     )
     filterset_class = JourneyFilter
-
-    def get_queryset(self):
-        queryset = self.queryset
-
-        departure_time = self.request.query_params.get("departure_time")
-        arrival_time = self.request.query_params.get("arrival_time")
-        source = self.request.query_params.get("source")
-        destination = self.request.query_params.get("destination")
-
-        if departure_time:
-            date = datetime.strptime(departure_time, "%Y-%m-%d").date()
-            queryset = queryset.filter(departure_time__date=date)
-
-        if arrival_time:
-            date = datetime.strptime(arrival_time, "%Y-%m-%d").date()
-            queryset = queryset.filter(arrival_time__date=date)
-
-        if source:
-            queryset = queryset.filter(route__source__name__icontains=source)
-
-        if destination:
-            queryset = queryset.filter(
-                route__destination__name__icontains=destination
-            )
-
-
-        return queryset
 
     def get_serializer_class(self):
         if self.action == "list":
