@@ -56,6 +56,13 @@ class TrainTypeViewSet(viewsets.ModelViewSet):
     queryset = TrainType.objects.all()
     serializer_class = TrainTypeSerializer
 
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=["name"]
+        )
+        return queryset.order_by(*ordering_fields)
+
 
 class CrewViewSet(viewsets.ModelViewSet):
     queryset = Crew.objects.all()
