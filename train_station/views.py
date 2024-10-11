@@ -147,6 +147,19 @@ class JourneyViewSet(viewsets.ModelViewSet):
         .prefetch_related("crew")
     )
     filterset_class = JourneyFilter
+    ordering_fields = [
+        "route",
+        "train",
+        "departure_time",
+        "arrival_time"
+    ]
+
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=self.ordering_fields
+        )
+        return queryset.order_by(*ordering_fields)
 
     def get_serializer_class(self):
         if self.action == "list":
