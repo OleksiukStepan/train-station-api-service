@@ -123,6 +123,14 @@ class OrderViewSet(viewsets.ModelViewSet):
 class TrainViewSet(viewsets.ModelViewSet):
     queryset = Train.objects.select_related("train_type")
     filterset_class = TrainFilter
+    ordering_fields = ["name", "cargo_num", "places_in_cargo", "train_type"]
+
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=self.ordering_fields
+        )
+        return queryset.order_by(*ordering_fields)
 
     def get_serializer_class(self):
         if self.action == "list":
