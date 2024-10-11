@@ -110,7 +110,11 @@ class OrderViewSet(viewsets.ModelViewSet):
         return OrderSerializer
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+        queryset = self.queryset    #.filter(user=self.request.user)
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=["created_at"]
+        )
+        return queryset.order_by(*ordering_fields)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
