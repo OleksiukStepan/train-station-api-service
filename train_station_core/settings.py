@@ -40,8 +40,9 @@ INSTALLED_APPS = [
 
     # 3rd apps
     "rest_framework",
-    "drf_spectacular",
     "debug_toolbar",
+    "django_filters",
+    "drf_spectacular",
 
     # my apps
     "train_station",
