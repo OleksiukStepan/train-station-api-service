@@ -1,7 +1,7 @@
 from rest_framework.request import Request
 
 
-class MovieOrdering:
+class OrderingHelper:
     ordering_param = "ordering"
     default_param = "-pk"
 

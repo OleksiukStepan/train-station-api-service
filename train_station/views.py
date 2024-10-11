@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from rest_framework import viewsets
 
 from train_station.filters import (
@@ -16,6 +17,7 @@ from train_station.models import (
     Journey,
     Ticket,
 )
+from train_station.ordering import OrderingHelper
 from train_station.serializers import (
     StationSerializer,
     RouteSerializer,
@@ -41,6 +43,13 @@ from train_station.serializers import (
 class StationViewSet(viewsets.ModelViewSet):
     queryset = Station.objects.all()
     serializer_class = StationSerializer
+
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=["name"]
+        )
+        return queryset.order_by(*ordering_fields)
 
 
 class TrainTypeViewSet(viewsets.ModelViewSet):
@@ -78,9 +87,8 @@ class OrderViewSet(viewsets.ModelViewSet):
 
         return OrderSerializer
 
-    # def get_queryset(self):
-    #     return Order.objects.filter(user=self.request.user)   # TODO
-    #     return queryset
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
