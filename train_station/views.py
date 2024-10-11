@@ -79,6 +79,14 @@ class CrewViewSet(viewsets.ModelViewSet):
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
     filterset_class = RouteFilter
+    ordering_fields = ["source", "destination", "distance"]
+
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset
+        ordering_fields = OrderingHelper.get_ordering_fields(
+            self.request, fields=self.ordering_fields
+        )
+        return queryset.order_by(*ordering_fields)
 
     def get_serializer_class(self):
         if self.action == "list":
