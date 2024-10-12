@@ -26,6 +26,7 @@ from train_station.schemas import (
     tickets,
     crews,
     train_types,
+    stations,
 )
 from train_station.serializers import (
     StationSerializer,
@@ -49,6 +50,7 @@ from train_station.serializers import (
 )
 
 
+@stations.station_schema
 class StationViewSet(viewsets.ModelViewSet):
     queryset = Station.objects.all()
     serializer_class = StationSerializer
