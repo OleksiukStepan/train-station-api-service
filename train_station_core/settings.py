@@ -162,6 +162,10 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    # PERMISSION
+    "DEFAULT_PERMISSION_CLASSES": [
+        "train_station.permissions.IsAdminOrIfAuthenticatedReadOnly",
+    ],
 }
 
 SPECTACULAR_SETTINGS = {
