@@ -18,7 +18,15 @@ from train_station.models import (
     Ticket,
 )
 from train_station.ordering import OrderingHelper
-from train_station.schemas import routes, orders, trains, journeys, tickets, crews
+from train_station.schemas import (
+    routes,
+    orders,
+    trains,
+    journeys,
+    tickets,
+    crews,
+    train_types,
+)
 from train_station.serializers import (
     StationSerializer,
     RouteSerializer,
@@ -53,6 +61,7 @@ class StationViewSet(viewsets.ModelViewSet):
         return queryset.order_by(*ordering_fields)
 
 
+@train_types.train_type_schema
 class TrainTypeViewSet(viewsets.ModelViewSet):
     queryset = TrainType.objects.all()
     serializer_class = TrainTypeSerializer
