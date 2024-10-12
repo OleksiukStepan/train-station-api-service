@@ -18,7 +18,7 @@ from train_station.models import (
     Ticket,
 )
 from train_station.ordering import OrderingHelper
-from train_station.schemas import routes, orders, trains, journeys
+from train_station.schemas import routes, orders, trains, journeys, tickets
 from train_station.serializers import (
     StationSerializer,
     RouteSerializer,
@@ -168,6 +168,7 @@ class JourneyViewSet(viewsets.ModelViewSet):
         return JourneySerializer
 
 
+@tickets.ticket_schema
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.select_related("journey", "order")
     ordering_fields = ["cargo", "seat", "journey"]
