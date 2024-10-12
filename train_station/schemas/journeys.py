@@ -1,5 +1,10 @@
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
+from drf_spectacular.utils import (
+    extend_schema_view,
+    extend_schema,
+    OpenApiParameter,
+)
+
 
 journey_schema = extend_schema_view(
     list=extend_schema(
@@ -30,6 +35,18 @@ journey_schema = extend_schema_view(
                 type=OpenApiTypes.STR,
                 description="Filter journeys by the destination station name"
                             "(ex. ?destination=Kharkiv)",
+            ),
+            OpenApiParameter(
+                name="ordering",
+                type=OpenApiTypes.STR,
+                description=(
+                    "Specify fields to order the results by. "
+                    "Available fields are `route`, `train`, "
+                    "`departure_time`, and `arrival_time`. "
+                    "Prefix with `-` for descending order. "
+                    "Multiple fields can be separated by commas. "
+                    "(ex. ?ordering=departure_time or ?ordering=-arrival_time)"
+                ),
             ),
         ],
     ),
