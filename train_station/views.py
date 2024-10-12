@@ -21,6 +21,7 @@ from train_station.ordering import OrderingHelper
 from train_station.schemas import (
     routes,
     orders,
+    trains,
 )
 from train_station.serializers import (
     StationSerializer,
@@ -125,7 +126,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-
+@trains.train_schema
 class TrainViewSet(viewsets.ModelViewSet):
     queryset = Train.objects.select_related("train_type")
     filterset_class = TrainFilter
