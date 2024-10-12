@@ -17,6 +17,16 @@ order_schema = extend_schema_view(
                 description="Filter orders by creation date. "
                             "(ex. ?title=2024-10-09)",
             ),
+            OpenApiParameter(
+                name="ordering",
+                type=OpenApiTypes.STR,
+                description=(
+                    "Specify fields to order the results by. "
+                    "Available field is `created_at`. "
+                    "Prefix with `-` for descending order "
+                    "(ex. ?ordering=created_at or ?ordering=-created_at)"
+                ),
+            )
         ],
     ),
 )
