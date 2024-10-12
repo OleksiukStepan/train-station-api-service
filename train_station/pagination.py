@@ -8,7 +8,6 @@ class TrainStationPagination(PageNumberPagination):
     max_page_size = 10
 
     def get_paginated_response(self, data):
-        print(data)
         return Response({
             "count": self.page.paginator.count,
             "next": self.get_next_link(),
