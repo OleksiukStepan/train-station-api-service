@@ -18,7 +18,10 @@ from train_station.models import (
     Ticket,
 )
 from train_station.ordering import OrderingHelper
-from train_station.schemas.route import route_schema
+from train_station.schemas import (
+    routes,
+    orders,
+)
 from train_station.serializers import (
     StationSerializer,
     RouteSerializer,
@@ -77,7 +80,7 @@ class CrewViewSet(viewsets.ModelViewSet):
         return queryset.order_by(*ordering_fields)
 
 
-@route_schema
+@routes.route_schema
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
     filterset_class = RouteFilter
@@ -99,6 +102,7 @@ class RouteViewSet(viewsets.ModelViewSet):
         return RouteSerializer
 
 
+@orders.order_schema
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related("user")
     filterset_class = OrderFilter
