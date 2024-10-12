@@ -17,6 +17,18 @@ train_schema = extend_schema_view(
                 description="Filter trains by train type ID(s). "
                             "(ex. ?train_type=1,2,3)",
             ),
+            OpenApiParameter(
+                name="ordering",
+                type=OpenApiTypes.STR,
+                description=(
+                    "Specify fields to order the results by. "
+                    "Available fields are `name`, `cargo_num`, "
+                    "`places_in_cargo`, and `train_type`. "
+                    "Prefix with `-` for descending order. "
+                    "Multiple fields can be separated by commas "
+                    "(ex. ?ordering=name or ?ordering=-cargo_num)"
+                ),
+            ),
         ],
     ),
 )
