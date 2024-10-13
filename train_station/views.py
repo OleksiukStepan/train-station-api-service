@@ -1,7 +1,11 @@
 from typing import Type
 
 from django.db.models import QuerySet
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAdminUser
+from rest_framework.request import Request
+from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 
 from train_station.filters import (
@@ -50,7 +54,34 @@ from train_station.serializers import (
     TicketSerializer,
     TicketListSerializer,
     TicketDetailSerializer,
+    CrewImageSerializer,
+    TrainImageSerializer,
 )
+
+
+class UploadImageMixin:
+    image_serializer_class = None
+
+    @action(
+        methods=["POST"],
+        detail=True,
+        permission_classes=[IsAdminUser],
+        url_path="upload-image",
+    )
+    def upload_image(self, request: Request, pk: int = None) -> Response:
+        if "image" not in request.data:
+            return Response(
+                {"detail": "No image provided."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        instance = self.get_object()
+        serializer = self.image_serializer_class(
+            instance, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @stations.station_schema
@@ -80,9 +111,15 @@ class TrainTypeViewSet(viewsets.ModelViewSet):
 
 
 @crews.crew_schema
-class CrewViewSet(viewsets.ModelViewSet):
+class CrewViewSet(viewsets.ModelViewSet, UploadImageMixin):
     queryset = Crew.objects.all()
-    serializer_class = CrewSerializer
+    image_serializer_class = CrewImageSerializer
+
+    def get_serializer_class(self):
+        if self.action == "upload_image":
+            return TrainImageSerializer
+
+        return CrewSerializer
 
     def get_queryset(self) -> QuerySet:
         queryset = self.queryset
@@ -139,9 +176,10 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 @trains.train_schema
-class TrainViewSet(viewsets.ModelViewSet):
+class TrainViewSet(viewsets.ModelViewSet, UploadImageMixin):
     queryset = Train.objects.select_related("train_type")
     filterset_class = TrainFilter
+    image_serializer_class = TrainImageSerializer
     ordering_fields = ["name", "cargo_num", "places_in_cargo", "train_type"]
 
     def get_queryset(self) -> QuerySet:
@@ -156,6 +194,8 @@ class TrainViewSet(viewsets.ModelViewSet):
             return TrainListSerializer
         elif self.action == "retrieve":
             return TrainDetailSerializer
+        elif self.action == "upload_image":
+            return TrainImageSerializer
 
         return TrainSerializer
 
