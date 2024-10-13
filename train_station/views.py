@@ -187,7 +187,10 @@ class JourneyViewSet(viewsets.ModelViewSet):
 
 @tickets.ticket_schema
 class TicketViewSet(viewsets.ModelViewSet):
-    queryset = Ticket.objects.select_related("journey", "order")
+    queryset = (
+        Ticket.objects.select_related("journey", "order")
+        .prefetch_related("journey__crew")
+    )
     ordering_fields = ["cargo", "seat", "journey"]
 
     def get_queryset(self) -> QuerySet:
