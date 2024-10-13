@@ -1,6 +1,4 @@
-from django.contrib.auth.models import BaseUserManager
-
-from user.models import User
+from django.contrib.auth.models import BaseUserManager, AbstractUser
 
 
 class UserManager(BaseUserManager):
@@ -13,7 +11,7 @@ class UserManager(BaseUserManager):
         email: str,
         password: str,
         **extra_fields
-    ) -> User:
+    ) -> AbstractUser:
         """Create and save a User with the given email and password."""
         if not email:
             raise ValueError("The given email must be set")
@@ -28,7 +26,7 @@ class UserManager(BaseUserManager):
             email: str,
             password: str = None,
             **extra_fields
-    ) -> User:
+    ) -> AbstractUser:
         """Create and save a regular User with the given email and password."""
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
@@ -39,7 +37,7 @@ class UserManager(BaseUserManager):
             email: str,
             password: str,
             **extra_fields
-    ) -> User:
+    ) -> AbstractUser:
         """Create and save a SuperUser with the given email and password."""
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
