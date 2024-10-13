@@ -56,6 +56,12 @@ class TrainTypeSerializer(serializers.ModelSerializer):
         fields = ["id", "name"]
 
 
+class TrainImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Train
+        fields = ["id", "image"]
+
+
 class TrainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Train
@@ -68,15 +74,31 @@ class TrainListSerializer(TrainSerializer):
         slug_field="name",
     )
 
+    class Meta(TrainSerializer.Meta):
+        model = Train
+        fields = TrainSerializer.Meta.fields + ["image"]
+
 
 class TrainDetailSerializer(TrainSerializer):
     train_type = TrainTypeSerializer(many=False, read_only=False)
 
+    class Meta(TrainSerializer.Meta):
+        model = Train
+        fields = TrainSerializer.Meta.fields + ["image"]
 
-class CrewSerializer(serializers.ModelSerializer):
+
+class CrewImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Crew
-        fields = ["id", "first_name", "last_name"]
+        fields = ["id", "image"]
+
+
+class CrewSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(read_only=True)
+
+    class Meta:
+        model = Crew
+        fields = ["id", "first_name", "last_name", "image"]
 
 
 class JourneySerializer(serializers.ModelSerializer):
