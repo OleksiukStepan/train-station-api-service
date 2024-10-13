@@ -25,7 +25,6 @@ router.register("journeys", JourneyViewSet)
 router.register("tickets", TicketViewSet)
 
 
-
 urlpatterns = [
     path("", include(router.urls)),
 ]

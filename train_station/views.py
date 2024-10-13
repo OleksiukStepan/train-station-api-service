@@ -1,5 +1,8 @@
+from typing import Type
+
 from django.db.models import QuerySet
 from rest_framework import viewsets
+from rest_framework.serializers import Serializer
 
 from train_station.filters import (
     RouteFilter,
@@ -102,7 +105,7 @@ class RouteViewSet(viewsets.ModelViewSet):
         )
         return queryset.order_by(*ordering_fields)
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return RouteListSerializer
         elif self.action == "retrieve":
@@ -116,7 +119,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related("user")
     filterset_class = OrderFilter
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return OrderListSerializer
         elif self.action == "retrieve":
@@ -124,15 +127,16 @@ class OrderViewSet(viewsets.ModelViewSet):
 
         return OrderSerializer
 
-    def get_queryset(self):
-        queryset = self.queryset    #.filter(user=self.request.user)
+    def get_queryset(self) -> QuerySet:
+        queryset = self.queryset.filter(user=self.request.user)
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=["created_at"]
         )
         return queryset.order_by(*ordering_fields)
 
-    def perform_create(self, serializer):
+    def perform_create(self, serializer: OrderSerializer) -> None:
         serializer.save(user=self.request.user)
+
 
 @trains.train_schema
 class TrainViewSet(viewsets.ModelViewSet):
@@ -147,13 +151,14 @@ class TrainViewSet(viewsets.ModelViewSet):
         )
         return queryset.order_by(*ordering_fields)
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return TrainListSerializer
         elif self.action == "retrieve":
             return TrainDetailSerializer
 
         return TrainSerializer
+
 
 @journeys.journey_schema
 class JourneyViewSet(viewsets.ModelViewSet):
@@ -171,7 +176,7 @@ class JourneyViewSet(viewsets.ModelViewSet):
         )
         return queryset.order_by(*ordering_fields)
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return JourneyListSerializer
         elif self.action == "retrieve":
@@ -192,7 +197,7 @@ class TicketViewSet(viewsets.ModelViewSet):
         )
         return queryset.order_by(*ordering_fields)
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return TicketListSerializer
         elif self.action == "retrieve":

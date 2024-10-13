@@ -25,7 +25,7 @@ class RouteSerializer(serializers.ModelSerializer):
         model = Route
         fields = ["id", "source", "destination", "distance"]
 
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> dict:
         if attrs["source"] == attrs["destination"]:
             raise serializers.ValidationError(
                 "Source and destination can't be the same"
@@ -94,7 +94,7 @@ class JourneySerializer(serializers.ModelSerializer):
             "arrival_time"
         ]
 
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> dict:
         if attrs["departure_time"] >= attrs["arrival_time"]:
             raise serializers.ValidationError(
                 "Departure time cannot be later than or equal to arrival time"
@@ -132,7 +132,7 @@ class TicketSerializer(serializers.ModelSerializer):
         model = Ticket
         fields = ["id", "cargo", "seat", "journey"]
 
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> dict:
         data = super().validate(attrs=attrs)
         Ticket.validate_ticket(
             attrs["cargo"],
@@ -141,6 +141,7 @@ class TicketSerializer(serializers.ModelSerializer):
             ValidationError
         )
         return data
+
 
 class TicketListSerializer(TicketSerializer):
     journey = JourneyListSerializer(many=False, read_only=True)
@@ -161,7 +162,7 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ["id", "tickets", "created_at"]
 
-    def create(self, validated_data):
+    def create(self, validated_data: dict) -> Order:
         with transaction.atomic():
             tickets_data = validated_data.pop("tickets")
             order = Order.objects.create(**validated_data)

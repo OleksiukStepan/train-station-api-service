@@ -55,7 +55,11 @@ class CrewAdmin(admin.ModelAdmin):
 class JourneyAdmin(admin.ModelAdmin):
     list_display = ("route", "train", "departure_time", "arrival_time")
     list_filter = ("route", "train", "departure_time")
-    search_fields = ("route__source__name", "route__destination__name", "train__name")
+    search_fields = (
+        "route__source__name",
+        "route__destination__name",
+        "train__name"
+    )
 
 
 @admin.register(Ticket)
