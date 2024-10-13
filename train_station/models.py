@@ -1,7 +1,10 @@
-from typing import Type
+import os
+import uuid
+from typing import Type, Union
 
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils.text import slugify
 
 from train_station_core import settings
 
@@ -63,6 +66,23 @@ class TrainType(models.Model):
         return self.name
 
 
+def image_file_path(instance: Union["Train", "Crew"], filename: str) -> str:
+    _, extension = os.path.splitext(filename)
+    upload_to = "uploads/others/"
+    name = "unknown"
+
+    if isinstance(instance, Train):
+        upload_to = "uploads/trains/"
+        name = instance.name or "train"
+    elif isinstance(instance, Crew):
+        upload_to = "uploads/crew/"
+        name = instance.full_name or "unknown"
+
+    filename = f"{slugify(name)}-{uuid.uuid4()}{extension}"
+
+    return os.path.join(upload_to, filename)
+
+
 class Train(models.Model):
     name = models.CharField(max_length=255, unique=True)
     cargo_num = models.IntegerField()
@@ -70,6 +90,7 @@ class Train(models.Model):
     train_type = models.ForeignKey(
         TrainType, on_delete=models.CASCADE, related_name="trains"
     )
+    image = models.ImageField(null=True, upload_to=image_file_path)
 
     def __str__(self) -> str:
         return self.name
@@ -78,6 +99,7 @@ class Train(models.Model):
 class Crew(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    image = models.ImageField(null=True, upload_to=image_file_path)
 
     @property
     def full_name(self) -> str:
