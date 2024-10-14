@@ -104,6 +104,7 @@ class CrewSerializer(serializers.ModelSerializer):
 class JourneySerializer(serializers.ModelSerializer):
     departure_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S",)
     arrival_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S",)
+    tickets_available = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Journey
@@ -111,6 +112,7 @@ class JourneySerializer(serializers.ModelSerializer):
             "id",
             "route",
             "train",
+            "tickets_available",
             "crew",
             "departure_time",
             "arrival_time"
