@@ -11,8 +11,8 @@ from train_station_core import settings
 
 class Station(models.Model):
     name = models.CharField(max_length=255)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
 
     class Meta:
         unique_together = ["latitude", "longitude"]
