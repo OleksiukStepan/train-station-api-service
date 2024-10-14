@@ -9,8 +9,14 @@ from drf_spectacular.utils import (
 train_schema = extend_schema_view(
     list=extend_schema(
         description="Retrieve a list of trains. "
-                    "Allows filtering trains by `train_type`",
+                    "Allows filtering trains by `train_name` and `train_type`",
         parameters=[
+            OpenApiParameter(
+                name="train_name",
+                type=OpenApiTypes.STR,
+                description="Filter trains by train name. "
+                            "(ex. ?train_name=Express)",
+            ),
             OpenApiParameter(
                 name="train_type",
                 type=OpenApiTypes.STR,

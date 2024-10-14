@@ -32,6 +32,10 @@ class OrderFilter(django_filters.FilterSet):
 
 
 class TrainFilter(django_filters.FilterSet):
+    train_name = django_filters.CharFilter(
+        field_name="name",
+        lookup_expr="icontains"
+    )
     train_type = django_filters.CharFilter(method="filter_train_type")
 
     def filter_train_type(
