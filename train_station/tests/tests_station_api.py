@@ -69,12 +69,12 @@ class AuthenticatedStationApiTests(TestCase):
         self.assertEqual(res.data, serializer.data)
 
     def test_station_list_ordering(self) -> None:
-        station1 = sample_station(
+        sample_station(
             name="A Station",
             latitude=22.2222,
             longitude=33.3333,
         )
-        station2 = sample_station(
+        sample_station(
             name="B Station",
             latitude=23.2222,
             longitude=34.3333,
