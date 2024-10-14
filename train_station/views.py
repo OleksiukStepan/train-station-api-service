@@ -1,6 +1,6 @@
 from typing import Type
 
-from django.db.models import QuerySet
+from django.db.models import QuerySet, F, Count
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser
@@ -205,6 +205,12 @@ class JourneyViewSet(viewsets.ModelViewSet):
     queryset = (
         Journey.objects.select_related("route", "train")
         .prefetch_related("crew")
+        .annotate(
+            tickets_available=(
+                F("train__cargo_num") * F("train__places_in_cargo")
+                - Count("tickets")
+            )
+        )
     )
     filterset_class = JourneyFilter
     ordering_fields = ["route", "train", "departure_time", "arrival_time"]
