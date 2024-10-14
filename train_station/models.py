@@ -130,7 +130,7 @@ class Journey(models.Model):
                 "Departure time cannot be later than or equal to arrival time"
             )
 
-    def save(self, *args, **kwargs) -> "Journey":
+    def save(self, *args, **kwargs) -> None:
         self.clean()
         super().save(*args, **kwargs)
 
