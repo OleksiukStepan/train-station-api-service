@@ -1,5 +1,5 @@
 services:
-  cinema:
+  station:
     build:
       context: .
     env_file:
@@ -16,7 +16,7 @@ services:
       - ./:/app
       - my_media:/files/media
 
-  db:
+  db_station:
     image: postgres:16.0-alpine3.17
     restart: always
     env_file:
