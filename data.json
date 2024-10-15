@@ -1,0 +1,1750 @@
+[
+  {
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$4zQ6yn8yHfEy4DAeokTJXM$IzejnQab0aepzlvWDG+TsCuYhPB/JljwEhd3sIcBSpQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Soll",
+      "last_name": "Goodman",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-09T20:26:15.011Z",
+      "email": "user1@example.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$biVsXS8rrhCQoH6Bx5BNce$JbywWg5Y45o/LxO1UB1cHqjvBCYwuh07mxfkmODIpbM=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Jimmy",
+      "last_name": "McGill",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-09T20:26:15.567Z",
+      "email": "user2@example.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 3,
+    "fields": {
+      "password": "sdkfnovnd",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "John ",
+      "last_name": "Smith",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-09T20:26:15.567Z",
+      "email": "john@smith.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$biVsXD8rrhCQoH6Bc5BNce$JbywWg5Y45o",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Lana",
+      "last_name": "Del",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-09T20:26:15.567Z",
+      "email": "lana@del.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$42oeNg282uQU5xDX5VcLa0$jfX2uHgQMmedrst4oqX/SBKg/TWIJCeuc6MD6Fjat/U=",
+      "last_login": "2024-10-15T16:11:55.694Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-15T16:11:41.762Z",
+      "email": "new@new_user.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$yvGCqTbjmr5qfWjL1i68sY$o9K5/wKrIb8G4KYEg9ISsxfEx4v+zlUqTgPrhaofyuM=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-12T16:51:28.962Z",
+      "email": "test@user.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$cfMLXauj7MIqxirdIr0MGs$R2YZYGWemYa4JEIVVeS9zSBrJhhZEH1r56eJmpbdE1o=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-15T13:57:01.347Z",
+      "email": "user@user.user.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$Q5p4hDLCSCHbStvhzfyZ5B$7s4HnMvsqCt02Y0dNYcex7/InNY78wN3Sou4uINimE0=",
+      "last_login": "2024-10-15T16:13:41.241Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-10-15T13:58:48.963Z",
+      "email": "admin@admin.com",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 6,
+    "fields": {
+      "name": "Kyiv",
+      "latitude": 50.4501,
+      "longitude": 30.5234
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 7,
+    "fields": {
+      "name": "Lviv",
+      "latitude": 49.8397,
+      "longitude": 24.0297
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 8,
+    "fields": {
+      "name": "Kharkiv",
+      "latitude": 49.9935,
+      "longitude": 36.2304
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 9,
+    "fields": {
+      "name": "Odesa",
+      "latitude": 46.4825,
+      "longitude": 30.7233
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 10,
+    "fields": {
+      "name": "Dnipro",
+      "latitude": 48.4647,
+      "longitude": 35.0462
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 11,
+    "fields": {
+      "name": "Ivano-Frankivsk",
+      "latitude": 48.9226,
+      "longitude": 24.7097
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 13,
+    "fields": {
+      "name": "Ternopil",
+      "latitude": 49.5535,
+      "longitude": 25.5947
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 14,
+    "fields": {
+      "name": "Yaremche",
+      "latitude": 48.2737,
+      "longitude": 24.3331
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 15,
+    "fields": {
+      "name": "Vinnytsia",
+      "latitude": 49.2328,
+      "longitude": 28.48
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 16,
+    "fields": {
+      "name": "Zaporizhzhia",
+      "latitude": 47.8388,
+      "longitude": 35.1396
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 17,
+    "fields": {
+      "name": "Chernivtsi",
+      "latitude": 48.2917,
+      "longitude": 25.9358
+    }
+  },
+  {
+    "model": "train_station.station",
+    "pk": 18,
+    "fields": {
+      "name": "Poltava",
+      "latitude": 49.5883,
+      "longitude": 34.5514
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 1,
+    "fields": {
+      "source": 6,
+      "destination": 7,
+      "distance": 540
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 2,
+    "fields": {
+      "source": 7,
+      "destination": 8,
+      "distance": 980
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 3,
+    "fields": {
+      "source": 8,
+      "destination": 9,
+      "distance": 650
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 4,
+    "fields": {
+      "source": 9,
+      "destination": 10,
+      "distance": 430
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 5,
+    "fields": {
+      "source": 10,
+      "destination": 6,
+      "distance": 480
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 6,
+    "fields": {
+      "source": 6,
+      "destination": 11,
+      "distance": 540
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 7,
+    "fields": {
+      "source": 7,
+      "destination": 11,
+      "distance": 132
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 8,
+    "fields": {
+      "source": 7,
+      "destination": 15,
+      "distance": 360
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 9,
+    "fields": {
+      "source": 9,
+      "destination": 16,
+      "distance": 530
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 10,
+    "fields": {
+      "source": 10,
+      "destination": 16,
+      "distance": 82
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 11,
+    "fields": {
+      "source": 17,
+      "destination": 15,
+      "distance": 263
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 12,
+    "fields": {
+      "source": 18,
+      "destination": 8,
+      "distance": 145
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 13,
+    "fields": {
+      "source": 6,
+      "destination": 18,
+      "distance": 340
+    }
+  },
+  {
+    "model": "train_station.route",
+    "pk": 14,
+    "fields": {
+      "source": 6,
+      "destination": 8,
+      "distance": 490
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 1,
+    "fields": {
+      "created_at": "2024-10-09T17:36:29.317Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 2,
+    "fields": {
+      "created_at": "2024-10-09T17:36:29.320Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 4,
+    "fields": {
+      "created_at": "2024-10-10T12:05:38.486Z",
+      "user": 4
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 5,
+    "fields": {
+      "created_at": "2024-10-10T12:21:33.158Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 7,
+    "fields": {
+      "created_at": "2024-10-13T13:00:11.913Z",
+      "user": 6
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 8,
+    "fields": {
+      "created_at": "2024-10-13T13:00:11.918Z",
+      "user": 2
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 9,
+    "fields": {
+      "created_at": "2024-10-13T13:00:11.919Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 10,
+    "fields": {
+      "created_at": "2024-10-13T13:00:11.919Z",
+      "user": 4
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 11,
+    "fields": {
+      "created_at": "2024-10-13T13:00:11.920Z",
+      "user": 5
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 12,
+    "fields": {
+      "created_at": "2024-10-13T13:00:11.920Z",
+      "user": 6
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 13,
+    "fields": {
+      "created_at": "2024-10-13T14:09:36.769Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 14,
+    "fields": {
+      "created_at": "2024-10-13T14:09:36.771Z",
+      "user": 2
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 15,
+    "fields": {
+      "created_at": "2024-10-13T14:09:36.772Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 16,
+    "fields": {
+      "created_at": "2024-10-13T14:09:36.773Z",
+      "user": 5
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 17,
+    "fields": {
+      "created_at": "2024-10-13T14:10:31.315Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 18,
+    "fields": {
+      "created_at": "2024-10-13T14:12:42.052Z",
+      "user": 6
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 19,
+    "fields": {
+      "created_at": "2024-10-13T14:12:42.071Z",
+      "user": 2
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 20,
+    "fields": {
+      "created_at": "2024-10-13T14:12:42.081Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 21,
+    "fields": {
+      "created_at": "2024-10-13T14:12:42.087Z",
+      "user": 4
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 22,
+    "fields": {
+      "created_at": "2024-10-13T14:14:00.654Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 23,
+    "fields": {
+      "created_at": "2024-10-13T14:16:35.787Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 24,
+    "fields": {
+      "created_at": "2024-10-13T14:16:35.799Z",
+      "user": 2
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 25,
+    "fields": {
+      "created_at": "2024-10-13T14:16:35.810Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 26,
+    "fields": {
+      "created_at": "2024-10-13T14:16:35.815Z",
+      "user": 4
+    }
+  },
+  {
+    "model": "train_station.order",
+    "pk": 27,
+    "fields": {
+      "created_at": "2024-10-13T14:19:50.155Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 1,
+    "fields": {
+      "name": "Passenger"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 2,
+    "fields": {
+      "name": "Freight"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 3,
+    "fields": {
+      "name": "Express"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 4,
+    "fields": {
+      "name": "Regional"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 5,
+    "fields": {
+      "name": "Military"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 6,
+    "fields": {
+      "name": "High-Speed Train"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 7,
+    "fields": {
+      "name": "Intercity"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 8,
+    "fields": {
+      "name": "Sleeper Train"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 9,
+    "fields": {
+      "name": "Regional Train"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 10,
+    "fields": {
+      "name": "Commuter Train"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 11,
+    "fields": {
+      "name": "Long-Distance"
+    }
+  },
+  {
+    "model": "train_station.traintype",
+    "pk": 12,
+    "fields": {
+      "name": "Special Service Train"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 1,
+    "fields": {
+      "name": "Express 1",
+      "cargo_num": 10,
+      "places_in_cargo": 30,
+      "train_type": 3,
+      "image": "uploads/trains/express-1-462f216d-cb1b-4ec0-a058-1dc496d0c1c3.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 2,
+    "fields": {
+      "name": "Passenger 1",
+      "cargo_num": 12,
+      "places_in_cargo": 25,
+      "train_type": 1,
+      "image": "uploads/trains/passenger-1-fafbe6d6-9405-4a65-a6be-7a533100cdf5.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 3,
+    "fields": {
+      "name": "Freight 1",
+      "cargo_num": 15,
+      "places_in_cargo": 0,
+      "train_type": 2,
+      "image": "uploads/trains/freight-1-97ef2e83-b267-4e2c-9ac3-f2deace5ecfb.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 4,
+    "fields": {
+      "name": "Regional 1",
+      "cargo_num": 8,
+      "places_in_cargo": 40,
+      "train_type": 4,
+      "image": ""
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 5,
+    "fields": {
+      "name": "Express 2",
+      "cargo_num": 9,
+      "places_in_cargo": 35,
+      "train_type": 3,
+      "image": ""
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 6,
+    "fields": {
+      "name": "Democracy",
+      "cargo_num": 10,
+      "places_in_cargo": 1,
+      "train_type": 5,
+      "image": "uploads/trains/democracy-fcf5b9c8-190d-4343-96ea-9cfc282accd6.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 7,
+    "fields": {
+      "name": "Lifting",
+      "cargo_num": 49,
+      "places_in_cargo": 23,
+      "train_type": 1,
+      "image": ""
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 8,
+    "fields": {
+      "name": "Express Kyiv-Lviv",
+      "cargo_num": 10,
+      "places_in_cargo": 50,
+      "train_type": 6,
+      "image": "uploads/trains/express-kyiv-lviv-c58fb5b5-5846-40d1-ac37-5fb221e4a922.webp"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 9,
+    "fields": {
+      "name": "Intercity Kharkiv-Odessa",
+      "cargo_num": 8,
+      "places_in_cargo": 60,
+      "train_type": 7,
+      "image": "uploads/trains/intercity-kharkiv-odessa-197b092b-9d78-411d-a65e-cf669e093728.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 10,
+    "fields": {
+      "name": "Night Express Kyiv-Odessa",
+      "cargo_num": 12,
+      "places_in_cargo": 45,
+      "train_type": 8,
+      "image": "uploads/trains/night-express-kyiv-odessa-4db785ca-dd11-40f1-8432-f501e322296f.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 11,
+    "fields": {
+      "name": "Dnipro Regional",
+      "cargo_num": 7,
+      "places_in_cargo": 40,
+      "train_type": 9,
+      "image": "uploads/trains/dnipro-regional-6948394e-f6d8-40d0-9fc3-ff250c132c1e.webp"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 12,
+    "fields": {
+      "name": "Zaporizhzhia Commuter",
+      "cargo_num": 5,
+      "places_in_cargo": 30,
+      "train_type": 10,
+      "image": "uploads/trains/zaporizhzhia-commuter-38821273-d9bc-42f4-9c94-e7d4147738d9.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 13,
+    "fields": {
+      "name": "Chernivtsi Connector",
+      "cargo_num": 6,
+      "places_in_cargo": 50,
+      "train_type": 11,
+      "image": "uploads/trains/chernivtsi-connector-893cd01a-8276-4d90-9b7e-60129ee1585f.webp"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 14,
+    "fields": {
+      "name": "Vinnytsia-Lviv Special",
+      "cargo_num": 9,
+      "places_in_cargo": 55,
+      "train_type": 12,
+      "image": "uploads/trains/vinnytsia-lviv-special-e4dda741-230e-45ee-a8b9-640b8a12a000.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 15,
+    "fields": {
+      "name": "Poltava Direct",
+      "cargo_num": 8,
+      "places_in_cargo": 50,
+      "train_type": 6,
+      "image": "uploads/trains/poltava-direct-bafe0f50-5f40-42dd-b180-0b5b9ee49700.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 16,
+    "fields": {
+      "name": "Odessa Night Rider",
+      "cargo_num": 11,
+      "places_in_cargo": 60,
+      "train_type": 8,
+      "image": "uploads/trains/odessa-night-rider-06f2f463-0581-4c49-8453-78bdee3819d2.jpg"
+    }
+  },
+  {
+    "model": "train_station.train",
+    "pk": 17,
+    "fields": {
+      "name": "Kyiv Central Regional",
+      "cargo_num": 10,
+      "places_in_cargo": 45,
+      "train_type": 9,
+      "image": "uploads/trains/kyiv-central-regional-5a61f815-97e0-44b8-a6c8-084925fee3ed.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Smith",
+      "image": "uploads/crew/john-smith-54912bd9-95e5-461d-a604-a185f1e09717.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 2,
+    "fields": {
+      "first_name": "Anna",
+      "last_name": "Brown",
+      "image": ""
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 3,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Davis",
+      "image": "uploads/crew/tom-davis-3a3e6e5e-acd1-4b6a-a86b-1cecd9a5f9ab.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 4,
+    "fields": {
+      "first_name": "Olivia",
+      "last_name": "Jones",
+      "image": ""
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 5,
+    "fields": {
+      "first_name": "James",
+      "last_name": "Taylor",
+      "image": ""
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 6,
+    "fields": {
+      "first_name": "Jason",
+      "last_name": "Statham",
+      "image": "uploads/crew/jason-statham-d7e82c33-3e30-4a71-be2a-0dfe3893f16d.webp"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 7,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Smith",
+      "image": "uploads/crew/john-smith-5fca71ea-a829-4b40-a8d2-445a40ef5f78.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 8,
+    "fields": {
+      "first_name": "Anna",
+      "last_name": "Brown",
+      "image": "uploads/crew/anna-brown-ac8c33c3-62c7-48be-9e7d-f7555197636e.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 9,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Davis",
+      "image": "uploads/crew/tom-davis-8da1bc45-8d4f-47c6-bac2-e691ced29504.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 10,
+    "fields": {
+      "first_name": "Olivia",
+      "last_name": "Jones",
+      "image": "uploads/crew/olivia-jones-f100a195-57f1-4452-9f9a-5e9c5bcd936c.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 11,
+    "fields": {
+      "first_name": "William",
+      "last_name": "Taylor",
+      "image": "uploads/crew/william-taylor-e232a884-09a4-4051-9aec-4ed10eac239c.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 12,
+    "fields": {
+      "first_name": "Emma",
+      "last_name": "Wilson",
+      "image": "uploads/crew/emma-wilson-a9f2f180-f639-4759-a793-518dd2cc45d6.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 13,
+    "fields": {
+      "first_name": "James",
+      "last_name": "Johnson",
+      "image": "uploads/crew/james-johnson-91ed6377-20e0-414a-91de-6d2fd899cfcb.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 14,
+    "fields": {
+      "first_name": "Mia",
+      "last_name": "White",
+      "image": "uploads/crew/mia-white-68fe9f9c-9fb4-49b1-aada-6d2419afa23b.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 15,
+    "fields": {
+      "first_name": "Alexander",
+      "last_name": "Harris",
+      "image": "uploads/crew/alexander-harris-95583c79-c696-48b8-88b1-57642eb82733.jpg"
+    }
+  },
+  {
+    "model": "train_station.crew",
+    "pk": 16,
+    "fields": {
+      "first_name": "Sophia",
+      "last_name": "Moore",
+      "image": "uploads/crew/sophia-moore-b69f8a6c-9985-429b-abb0-36a30c1af29a.jpg"
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 1,
+    "fields": {
+      "route": 1,
+      "train": 1,
+      "departure_time": "2024-10-09T08:00:00Z",
+      "arrival_time": "2024-10-09T12:00:00Z",
+      "crew": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 2,
+    "fields": {
+      "route": 2,
+      "train": 2,
+      "departure_time": "2024-10-10T09:00:00Z",
+      "arrival_time": "2024-10-10T15:00:00Z",
+      "crew": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 3,
+    "fields": {
+      "route": 3,
+      "train": 3,
+      "departure_time": "2024-10-11T07:00:00Z",
+      "arrival_time": "2024-10-11T13:00:00Z",
+      "crew": [
+        1,
+        5
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 4,
+    "fields": {
+      "route": 6,
+      "train": 5,
+      "departure_time": "2024-10-10T19:33:00Z",
+      "arrival_time": "2024-10-11T21:35:00Z",
+      "crew": [
+        1,
+        3,
+        4,
+        6
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 5,
+    "fields": {
+      "route": 3,
+      "train": 5,
+      "departure_time": "2024-10-11T17:22:00Z",
+      "arrival_time": "2024-10-12T20:23:00Z",
+      "crew": [
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 6,
+    "fields": {
+      "route": 6,
+      "train": 3,
+      "departure_time": "2024-10-13T17:23:00Z",
+      "arrival_time": "2024-10-14T10:23:00Z",
+      "crew": [
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 7,
+    "fields": {
+      "route": 1,
+      "train": 8,
+      "departure_time": "2024-10-15T05:00:00Z",
+      "arrival_time": "2024-10-15T09:30:00Z",
+      "crew": [
+        1,
+        2,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 8,
+    "fields": {
+      "route": 14,
+      "train": 10,
+      "departure_time": "2024-10-16T19:00:00Z",
+      "arrival_time": "2024-10-17T03:00:00Z",
+      "crew": [
+        3,
+        4,
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 9,
+    "fields": {
+      "route": 1,
+      "train": 8,
+      "departure_time": "2024-10-13T17:49:00Z",
+      "arrival_time": "2024-10-14T10:49:00Z",
+      "crew": [
+        1,
+        5,
+        7
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 10,
+    "fields": {
+      "route": 3,
+      "train": 9,
+      "departure_time": "2024-10-14T17:49:00Z",
+      "arrival_time": "2024-10-15T02:47:00Z",
+      "crew": [
+        2,
+        3,
+        5
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 11,
+    "fields": {
+      "route": 14,
+      "train": 17,
+      "departure_time": "2024-10-16T13:45:00Z",
+      "arrival_time": "2024-10-16T16:51:00Z",
+      "crew": [
+        8,
+        10,
+        13,
+        15
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 12,
+    "fields": {
+      "route": 9,
+      "train": 16,
+      "departure_time": "2024-10-17T17:37:00Z",
+      "arrival_time": "2024-10-17T22:08:00Z",
+      "crew": [
+        4,
+        15,
+        16
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 13,
+    "fields": {
+      "route": 8,
+      "train": 14,
+      "departure_time": "2024-10-19T16:26:00Z",
+      "arrival_time": "2024-10-19T20:10:00Z",
+      "crew": [
+        2,
+        3,
+        11,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "train_station.journey",
+    "pk": 14,
+    "fields": {
+      "route": 10,
+      "train": 11,
+      "departure_time": "2024-10-20T09:23:00Z",
+      "arrival_time": "2024-10-20T14:08:00Z",
+      "crew": [
+        2,
+        4,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 10,
+    "fields": {
+      "cargo": 1,
+      "seat": 5,
+      "journey": 1,
+      "order": 23
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 11,
+    "fields": {
+      "cargo": 2,
+      "seat": 10,
+      "journey": 2,
+      "order": 24
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 12,
+    "fields": {
+      "cargo": 4,
+      "seat": 20,
+      "journey": 1,
+      "order": 24
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 13,
+    "fields": {
+      "cargo": 1,
+      "seat": 25,
+      "journey": 2,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 14,
+    "fields": {
+      "cargo": 2,
+      "seat": 15,
+      "journey": 11,
+      "order": 27
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 15,
+    "fields": {
+      "cargo": 10,
+      "seat": 43,
+      "journey": 7,
+      "order": 27
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 16,
+    "fields": {
+      "cargo": 3,
+      "seat": 18,
+      "journey": 8,
+      "order": 26
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 17,
+    "fields": {
+      "cargo": 10,
+      "seat": 48,
+      "journey": 7,
+      "order": 26
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 18,
+    "fields": {
+      "cargo": 4,
+      "seat": 45,
+      "journey": 8,
+      "order": 26
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 19,
+    "fields": {
+      "cargo": 7,
+      "seat": 44,
+      "journey": 8,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 20,
+    "fields": {
+      "cargo": 6,
+      "seat": 31,
+      "journey": 9,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 21,
+    "fields": {
+      "cargo": 4,
+      "seat": 49,
+      "journey": 9,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 22,
+    "fields": {
+      "cargo": 4,
+      "seat": 21,
+      "journey": 14,
+      "order": 24
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 23,
+    "fields": {
+      "cargo": 10,
+      "seat": 16,
+      "journey": 8,
+      "order": 24
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 24,
+    "fields": {
+      "cargo": 8,
+      "seat": 10,
+      "journey": 9,
+      "order": 27
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 25,
+    "fields": {
+      "cargo": 9,
+      "seat": 34,
+      "journey": 7,
+      "order": 26
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 26,
+    "fields": {
+      "cargo": 7,
+      "seat": 25,
+      "journey": 9,
+      "order": 26
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 27,
+    "fields": {
+      "cargo": 6,
+      "seat": 6,
+      "journey": 2,
+      "order": 26
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 28,
+    "fields": {
+      "cargo": 10,
+      "seat": 9,
+      "journey": 1,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 29,
+    "fields": {
+      "cargo": 2,
+      "seat": 22,
+      "journey": 2,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 30,
+    "fields": {
+      "cargo": 8,
+      "seat": 5,
+      "journey": 5,
+      "order": 25
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 31,
+    "fields": {
+      "cargo": 1,
+      "seat": 30,
+      "journey": 8,
+      "order": 24
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 32,
+    "fields": {
+      "cargo": 2,
+      "seat": 53,
+      "journey": 13,
+      "order": 23
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 33,
+    "fields": {
+      "cargo": 3,
+      "seat": 9,
+      "journey": 14,
+      "order": 23
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 34,
+    "fields": {
+      "cargo": 2,
+      "seat": 16,
+      "journey": 4,
+      "order": 22
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 35,
+    "fields": {
+      "cargo": 7,
+      "seat": 26,
+      "journey": 12,
+      "order": 21
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 36,
+    "fields": {
+      "cargo": 3,
+      "seat": 59,
+      "journey": 10,
+      "order": 21
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 37,
+    "fields": {
+      "cargo": 3,
+      "seat": 42,
+      "journey": 11,
+      "order": 20
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 38,
+    "fields": {
+      "cargo": 8,
+      "seat": 52,
+      "journey": 10,
+      "order": 20
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 39,
+    "fields": {
+      "cargo": 8,
+      "seat": 33,
+      "journey": 13,
+      "order": 20
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 40,
+    "fields": {
+      "cargo": 2,
+      "seat": 18,
+      "journey": 1,
+      "order": 19
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 41,
+    "fields": {
+      "cargo": 1,
+      "seat": 8,
+      "journey": 10,
+      "order": 19
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 42,
+    "fields": {
+      "cargo": 2,
+      "seat": 19,
+      "journey": 1,
+      "order": 19
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 43,
+    "fields": {
+      "cargo": 9,
+      "seat": 35,
+      "journey": 8,
+      "order": 18
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 44,
+    "fields": {
+      "cargo": 7,
+      "seat": 1,
+      "journey": 1,
+      "order": 18
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 45,
+    "fields": {
+      "cargo": 6,
+      "seat": 6,
+      "journey": 14,
+      "order": 17
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 46,
+    "fields": {
+      "cargo": 2,
+      "seat": 22,
+      "journey": 1,
+      "order": 17
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 47,
+    "fields": {
+      "cargo": 2,
+      "seat": 35,
+      "journey": 10,
+      "order": 17
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 48,
+    "fields": {
+      "cargo": 4,
+      "seat": 1,
+      "journey": 1,
+      "order": 16
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 49,
+    "fields": {
+      "cargo": 7,
+      "seat": 35,
+      "journey": 14,
+      "order": 16
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 50,
+    "fields": {
+      "cargo": 9,
+      "seat": 39,
+      "journey": 9,
+      "order": 16
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 51,
+    "fields": {
+      "cargo": 8,
+      "seat": 15,
+      "journey": 4,
+      "order": 15
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 52,
+    "fields": {
+      "cargo": 5,
+      "seat": 4,
+      "journey": 9,
+      "order": 15
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 53,
+    "fields": {
+      "cargo": 3,
+      "seat": 29,
+      "journey": 1,
+      "order": 15
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 54,
+    "fields": {
+      "cargo": 9,
+      "seat": 22,
+      "journey": 4,
+      "order": 14
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 55,
+    "fields": {
+      "cargo": 7,
+      "seat": 26,
+      "journey": 9,
+      "order": 14
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 56,
+    "fields": {
+      "cargo": 6,
+      "seat": 3,
+      "journey": 1,
+      "order": 13
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 57,
+    "fields": {
+      "cargo": 1,
+      "seat": 12,
+      "journey": 1,
+      "order": 12
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 58,
+    "fields": {
+      "cargo": 9,
+      "seat": 11,
+      "journey": 13,
+      "order": 12
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 59,
+    "fields": {
+      "cargo": 12,
+      "seat": 23,
+      "journey": 8,
+      "order": 11
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 60,
+    "fields": {
+      "cargo": 8,
+      "seat": 27,
+      "journey": 11,
+      "order": 10
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 61,
+    "fields": {
+      "cargo": 8,
+      "seat": 15,
+      "journey": 5,
+      "order": 10
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 62,
+    "fields": {
+      "cargo": 6,
+      "seat": 25,
+      "journey": 14,
+      "order": 10
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 63,
+    "fields": {
+      "cargo": 1,
+      "seat": 13,
+      "journey": 7,
+      "order": 9
+    }
+  },
+  {
+    "model": "train_station.ticket",
+    "pk": 64,
+    "fields": {
+      "cargo": 4,
+      "seat": 24,
+      "journey": 14,
+      "order": 9
+    }
+  }
+]
