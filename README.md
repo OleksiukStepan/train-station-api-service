@@ -96,4 +96,3 @@ You will receive access and refresh tokens to authenticate API requests.
 - **Ticket Booking System**: Book tickets for journeys, including cargo and seating selection.
 - **Filtering Journeys**: Filter journeys by source, destination, and date.
 - **User Authentication**: Users can register, log in, and manage orders.
-- 
