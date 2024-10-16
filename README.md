@@ -58,12 +58,6 @@ Use the following credentials when prompted:
 - Email: `test@user.com`
 - Password: `test_12345`
 
-### Loading Initial Data
-To load sample data:
-```sh
-python manage.py loaddata data.json
-```
-
 ## Usage
 ### Authentication
 The API uses JWT for authentication. You can obtain a token by sending a POST request to:
