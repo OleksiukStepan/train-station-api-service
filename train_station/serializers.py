@@ -145,8 +145,10 @@ class JourneyListSerializer(JourneySerializer):  #
 
     def get_crew(self, obj: Journey) -> list[str]:
         return [
-            f"{person.full_name}"
-            for person in obj.crew.all()
+            f"{first_name} {last_name}"
+            for first_name, last_name in obj.crew.values_list(
+                "first_name", "last_name"
+            )
         ]
 
 
