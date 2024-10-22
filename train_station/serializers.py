@@ -51,8 +51,8 @@ class RouteListSerializer(RouteSerializer):
 
 
 class RouteDetailSerializer(RouteSerializer):
-    source = StationSerializer(many=False, read_only=True)
-    destination = StationSerializer(many=False, read_only=True)
+    source = StationSerializer(read_only=True)
+    destination = StationSerializer(read_only=True)
 
 
 class TrainTypeSerializer(serializers.ModelSerializer):
@@ -85,7 +85,7 @@ class TrainListSerializer(TrainSerializer):
 
 
 class TrainDetailSerializer(TrainSerializer):
-    train_type = TrainTypeSerializer(many=False, read_only=False)
+    train_type = TrainTypeSerializer()
 
     class Meta(TrainSerializer.Meta):
         model = Train
@@ -152,8 +152,8 @@ class JourneyListSerializer(JourneySerializer):  #
 
 class JourneyDetailSerializer(JourneySerializer):  #
     crew = CrewSerializer(many=True, read_only=True)
-    route = RouteListSerializer(many=False, read_only=True)
-    train = TrainListSerializer(many=False, read_only=True)
+    route = RouteListSerializer(read_only=True)
+    train = TrainListSerializer(read_only=True)
 
 
 class TicketSerializer(serializers.ModelSerializer):
@@ -173,11 +173,11 @@ class TicketSerializer(serializers.ModelSerializer):
 
 
 class TicketListSerializer(TicketSerializer):
-    journey = JourneyListSerializer(many=False, read_only=True)
+    journey = JourneyListSerializer(read_only=True)
 
 
 class TicketDetailSerializer(TicketSerializer):
-    journey = JourneyDetailSerializer(many=False, read_only=True)
+    journey = JourneyDetailSerializer(read_only=True)
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -185,7 +185,7 @@ class OrderSerializer(serializers.ModelSerializer):
         read_only=True,
         format="%Y-%m-%d %H:%M:%S",
     )
-    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
+    tickets = TicketSerializer(many=True, allow_empty=False)
 
     class Meta:
         model = Order
