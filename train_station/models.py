@@ -15,7 +15,12 @@ class Station(models.Model):
     longitude = models.FloatField(null=True, blank=True)
 
     class Meta:
-        unique_together = ["latitude", "longitude"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["latitude", "longitude"],
+                name="unique_latitude_longitude"
+            )
+        ]
         ordering = ["name"]
 
     def __str__(self) -> str:
@@ -32,7 +37,12 @@ class Route(models.Model):
     distance = models.PositiveIntegerField()
 
     class Meta:
-        unique_together = ["source", "destination"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["source", "destination"],
+                name="unique_source_destination"
+            )
+        ]
 
     def clean(self) -> None:
         if self.source == self.destination:
