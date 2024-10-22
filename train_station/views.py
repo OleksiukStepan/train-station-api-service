@@ -90,7 +90,7 @@ class StationViewSet(viewsets.ModelViewSet):
     serializer_class = StationSerializer
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=["name"]
         )
@@ -103,7 +103,7 @@ class TrainTypeViewSet(viewsets.ModelViewSet):
     serializer_class = TrainTypeSerializer
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=["name"]
         )
@@ -122,7 +122,7 @@ class CrewViewSet(viewsets.ModelViewSet, UploadImageMixin):
         return CrewSerializer
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=["first_name", "last_name"]
         )
@@ -136,7 +136,7 @@ class RouteViewSet(viewsets.ModelViewSet):
     ordering_fields = ["source", "destination", "distance"]
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=self.ordering_fields
         )
@@ -165,7 +165,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return OrderSerializer
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset.filter(user=self.request.user)
+        queryset = super().get_queryset().filter(user=self.request.user)
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=["created_at"]
         )
@@ -183,7 +183,7 @@ class TrainViewSet(viewsets.ModelViewSet, UploadImageMixin):
     ordering_fields = ["name", "cargo_num", "places_in_cargo", "train_type"]
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=self.ordering_fields
         )
@@ -216,7 +216,7 @@ class JourneyViewSet(viewsets.ModelViewSet):
     ordering_fields = ["route", "train", "departure_time", "arrival_time"]
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=self.ordering_fields
         )
@@ -240,7 +240,7 @@ class TicketViewSet(viewsets.ModelViewSet):
     ordering_fields = ["cargo", "seat", "journey"]
 
     def get_queryset(self) -> QuerySet:
-        queryset = self.queryset
+        queryset = super().get_queryset()
         ordering_fields = OrderingHelper.get_ordering_fields(
             self.request, fields=self.ordering_fields
         )
