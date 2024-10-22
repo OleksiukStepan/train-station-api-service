@@ -29,10 +29,10 @@ from train_station_core import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
-        "api/station/",
-        include("train_station.urls", namespace="station")
+        "api/stations/",
+        include("train_station.urls", namespace="stations")
     ),
-    path("api/user/", include("user.urls", namespace="user")),
+    path("api/users/", include("user.urls", namespace="users")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/doc/swagger/",
